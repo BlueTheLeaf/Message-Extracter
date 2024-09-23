@@ -1,7 +1,7 @@
 // Replace with your token and channel ID
 const token = "TOKEN_HERE"; // Your user token that has access to the channel
-const channelId = "CHANNEL_ID";
-const logFilePath = "output.txt"; // Make sure this ends with .txt
+const channelId = "CHANNEL_ID"; // The channel ID you want to save
+const FilePath = "output"; // The output that you want the messages to be in
 
 const Discord = require("discord.js-selfbot-v13");
 const fs = require("fs");
@@ -10,6 +10,8 @@ const fs = require("fs");
 const client = new Discord.Client({
   checkUpdate: false,
 });
+
+const logFilePath = `${FilePath}.txt`;
 
 // Login the selfbot
 client.login(token);
@@ -58,7 +60,7 @@ client.on("ready", async () => {
 
     fs.writeFileSync(logFilePath, messageLog, { encoding: "utf8" });
 
-    console.log("Messages saved to messages_log.txt");
+    console.log(`Messages saved to ${logFilePath}`);
   } catch (error) {
     console.error("Error fetching messages:", error);
   }
